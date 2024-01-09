@@ -3,11 +3,11 @@
 
 #pragma once
 
-#define MASTER_LEFT
-#define SERIAL_USART_FULL_DUPLEX   // Enable full duplex operation mode.
-#define SERIAL_USART_TX_PIN D2     // USART TX pin
-#define SERIAL_USART_RX_PIN D4     // USART RX pin
-#define SERIAL_USART_PIN_SWAP   
+#define SPLIT_USB_DETECT
+//#define SERIAL_USART_FULL_DUPLEX   // Enable full duplex operation mode.
+//#define SERIAL_USART_TX_PIN D2     // USART TX pin
+//#define SERIAL_USART_RX_PIN D4     // USART RX pin
+// #define SERIAL_USART_PIN_SWAP   
 #define OLED_UPDATE_INTERVAL 100
 // Not yet available in `info.json`
 #ifdef OLED_ENABLE

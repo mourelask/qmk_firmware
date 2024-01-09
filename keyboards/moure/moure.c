@@ -16,6 +16,7 @@
 
 
 #include "quantum.h"
+#include "print.h"
 #include <stdio.h>
 char wpm_str[10];
 
@@ -329,6 +330,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     if (!encoder_update_user(index, clockwise)) {
         return false;
     }
+
+    dprintf("Rotary index: %d\n", index);
+
     // 0 is left-half encoder,
     // 1 is right-half encoder
     if (index == 0) {
@@ -368,4 +372,12 @@ void keyboard_pre_init_user(void) {
   // Turn the LED off
   // (Due to technical reasons, high is off and low is on)
   writePinHigh(24);
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  // If console is enabled, it will print the matrix position and status of each key pressed
+#ifdef CONSOLE_ENABLE
+    dprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+#endif 
+  return true;
 }
